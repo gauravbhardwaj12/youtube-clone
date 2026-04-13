@@ -32,15 +32,42 @@ function Login(){
     }
     
     
-    return(<>
-    <form onSubmit={handleLogin} action="">
-<div><label htmlFor="">Email</label><input type="text" placeholder="Your Email" onChange={(e)=>setEmail(e.target.value)}/></div>
-<div><label htmlFor="">Password</label><input type="password" placeholder="Your password" onChange={(e)=>setPassword(e.target.value)} /></div>
-<button>Login</button>
+    return (
+  <div className="login-container">
+    <form className="login-box" onSubmit={handleLogin}>
+      
+      <h2>Sign in</h2>
+
+      <div className="input-group">
+        <label>Email</label>
+        <input 
+          type="email" 
+          placeholder="Enter your email" 
+          onChange={(e)=>setEmail(e.target.value)}
+          required
+        />
+      </div>
+
+      <div className="input-group">
+        <label>Password</label>
+        <input 
+          type="password" 
+          placeholder="Enter your password" 
+          onChange={(e)=>setPassword(e.target.value)}
+          required
+        />
+      </div>
+
+      <button className="login-btn">Login</button>
+
+      <p className="register-text">
+        Don't have an account? 
+        <Link to="/register"> Create account</Link>
+      </p>
+
     </form>
-    <button><Link to="/register">Create account</Link></button>
-    
-    </>);
+  </div>
+);
 }
 
 export default Login;
