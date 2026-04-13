@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import '../css/Profile.css';
 function Profile(){
     return (
   <div className="profile-container">
