@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import '../css/Listchannels.css';
 
 
 function Listchannels(){
@@ -39,7 +40,7 @@ function Listchannels(){
 
             <div className="channel-info">
               <h4>Channel {index + 1}</h4>
-              <p>ID: {channelid}</p>
+              
             </div>
           </Link>
         );
