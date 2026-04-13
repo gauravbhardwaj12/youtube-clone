@@ -1,4 +1,4 @@
-.homelist{
+/* .homelist{
     display: flex;
     gap:20px;
     flex-wrap: wrap;
@@ -7,4 +7,44 @@
 }
 .item{
     width: 22%;
+} */
+
+/* PAGE */
+.home-container {
+  padding: 20px;
+}
+
+/* CATEGORY BAR */
+.category-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.category-bar button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.category-bar button:hover {
+  background: #e5e5e5;
+}
+
+.category-bar button.active {
+  background: #0f0f0f;
+  color: white;
+  border: none;
+}
+
+/* GRID */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
 }

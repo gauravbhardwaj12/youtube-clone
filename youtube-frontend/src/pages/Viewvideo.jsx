@@ -9,6 +9,7 @@ function Viewvideo(){
     const {id}=useParams();
     const [video,setVideo]=useState({});
     const [recommend,setRecommend]=useState([]);
+    const [showFull, setShowFull] = useState(false);
     useEffect(()=>{
         fetch(`http://localhost:3200/video/${id}`)
     .then((d)=>d.json())
@@ -72,28 +73,52 @@ if (!videoId) return <p>Invalid video</p>;
     }
   };
 
-    return(<>
-    <div className="viewvideodiv">
-         <div className="mainvideodiv">
-            <YouTube videoId={videoId} onPlay={handlePlay} opts={opts}></YouTube>
-            <h3>{video.title}</h3>
-            <h3>Views: {video.views}</h3>
-            <button onClick={handleLikes}>like</button><p>{video.likes}</p>
-            <button onClick={handleDislikes}>dislike</button>{video.dislikes}
+    return (
+  <div className="viewvideo-container">
 
-            <Comment videoId={id}/>
-            
-          </div>
-        <div className="similarvideosdiv">
-            {recommend.map((video) => (
-        <Videocard key={video.videoId} video={video} />
-      ))}
+    {/* LEFT SIDE */}
+    <div className="mainvideo">
+
+      <YouTube videoId={videoId} onPlay={handlePlay} opts={opts} />
+
+      <h2 className="video-title">{video.title}</h2>
+
+      {/* VIDEO ACTIONS */}
+      <div className="video-actions">
+        <span>{video.views} views</span>
+
+        <div className="like-buttons">
+          <button onClick={handleLikes}>👍 {video.likes}</button>
+          <button onClick={handleDislikes}>👎 {video.dislikes}</button>
         </div>
+      </div>
+
+      {/* DESCRIPTION (NEW 🔥) */}
+      <div className="video-description">
+        <h4>Description</h4>
+        <p className={showFull ? "expanded" : "collapsed"}>
+          {video.description || "No description available"}
+        </p>
+        <button 
+          className="toggle-btn" 
+          onClick={() => setShowFull(!showFull)}
+        >
+          {showFull ? "Show less" : "Show more"}
+        </button>
+      </div>
+
+      <Comment videoId={id} />
 
     </div>
-   
-    
-   
-    </>);
+
+    {/* RIGHT SIDE */}
+    <div className="recommended">
+      {recommend.map((video) => (
+        <Videocard key={video.videoId} video={video} />
+      ))}
+    </div>
+
+  </div>
+);
 }
 export default Viewvideo;
