@@ -20,16 +20,34 @@ function Listchannels(){
     },[])
 
 
-    return(<>
-    List of your channels
-    {list.map((channelid,index)=>{
-        return(
-        <Link key={index} to={`/viewchannel/${channelid}`}>channel1</Link>
-        )
-    })}
+    return (
+  <div className="channels-container">
+    
+    <h2>Your Channels</h2>
 
+    <div className="channels-grid">
+      {list.map((channelid, index) => {
+        return (
+          <Link 
+            key={index} 
+            to={`/viewchannel/${channelid}`} 
+            className="channel-card"
+          >
+            <div className="channel-avatar">
+              <span>{index + 1}</span>
+            </div>
 
-    </>);
+            <div className="channel-info">
+              <h4>Channel {index + 1}</h4>
+              <p>ID: {channelid}</p>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
+
+  </div>
+);
 }
 
 export default Listchannels;
