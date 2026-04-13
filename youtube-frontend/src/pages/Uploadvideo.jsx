@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import '../css/Uploadvideo.css';
 
 function Uploadvideo(){
     const [title,setTitle]=useState("");
