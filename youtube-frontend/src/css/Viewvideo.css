@@ -1,0 +1,12 @@
+.viewvideodiv{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.mainvideodiv{
+    width: 50%;
+    margin-left:30px;
+}
+.similarvideosdiv{
+}
