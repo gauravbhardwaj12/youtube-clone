@@ -1,23 +1,46 @@
 import { Link } from "react-router-dom";
 function Profile(){
-    return(<>
-    <div>
-        <img src="" alt="Your profile pitcure" />
-        <button>select picture</button>
+    return (
+  <div className="profile-container">
 
-        <form action="">
-        <div>
-
-            <label htmlFor="">Name</label>
-            <label htmlFor="">Email</label>
-
+    <div className="profile-card">
+      
+      <div className="profile-top">
+        <div className="profile-pic">
+          <img src="" alt="Profile" />
         </div>
-    </form>
+        <button className="upload-btn">Select Picture</button>
+      </div>
+
+      <form className="profile-form">
+        <div className="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="Your Name" />
+        </div>
+
+        <div className="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="Your Email" />
+        </div>
+      </form>
+
     </div>
-    
-    <p>List of channels</p>
-    <Link to="/listchannels">Add or manage your channel(s)</Link>
-    <Link to="/newchannel"> create new channel</Link>
-    </>);
+
+    <div className="channel-section">
+      <h3>Your Channels</h3>
+
+      <div className="channel-links">
+        <Link to="/listchannels" className="link-btn">
+          Manage Channels
+        </Link>
+
+        <Link to="/newchannel" className="link-btn primary">
+          + Create New Channel
+        </Link>
+      </div>
+    </div>
+
+  </div>
+);
 }
 export default Profile;
