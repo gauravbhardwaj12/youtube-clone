@@ -35,6 +35,10 @@ app.get("/videos/:videoId/comments", getComments);
 app.get("/search",searchVideos);
 
 app.get("/recommended/:videoId", getRecommendedVideos);
+app.get("/channel/:id/videos",async (req, res) => {
+  const videos = await Video.find({ channelId: req.params.id });
+  res.json({ videos });
+});
 app.use("/users",usersRouter);
 app.use("/user",channelRouter);
 app.use("/user/channel",videoRouter);

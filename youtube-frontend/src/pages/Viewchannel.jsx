@@ -1,24 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Videocard from "../components/Videocard";
 import '../css/viewchannel.css'
 
 function Viewchannel(){
     const {id}=useParams();
     const token=localStorage.getItem("token");
     const [channeldata,setchanneldata]=useState({});
+    const [videos, setVideos] = useState([]);
 
-    useEffect(()=>{
-        fetch(`http://localhost:3200/user/viewchannel/${id}`,{
-            headers:{
-                "content-type":"application/json",
-                Authorization:`JWT ${token}`
-            }
-        })
-        .then((d)=>d.json())
-        .then((data)=>setchanneldata(data.channel))
-        .catch()
-    },[])
+    useEffect(() => {
+  //  Fetch channel details
+  fetch(`http://localhost:3200/user/viewchannel/${id}`, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `JWT ${token}`
+    }
+  })
+    .then((d) => d.json())
+    .then((data) => setchanneldata(data.channel))
+    .catch((e) => console.log(e));
+
+  //  Fetch videos of this channel (NEW API)
+  fetch(`http://localhost:3200/channel/${id}/videos`,{
+    headers: {
+      "content-type": "application/json",
+      Authorization: `JWT ${token}`
+    }
+  })
+    .then((d) => d.json())
+    .then((data) => {console.log(data);setVideos(data.videos)})
+    .catch((e) => console.log(e));
+
+}, [id]);
+
+    
     return (
   <div className="channel-page">
 
@@ -51,12 +68,18 @@ function Viewchannel(){
 
     {/* VIDEOS SECTION */}
     <div className="videos-section">
-      <h3>Videos</h3>
+  <h3>Videos</h3>
 
-      <div className="videos-grid">
-        <div className="video-card">No videos yet</div>
-      </div>
-    </div>
+  <div className="videos-grid">
+    {videos.length === 0 ? (
+      <p>No videos uploaded yet</p>
+    ) : (
+      videos.map((video) => (
+        <Videocard key={video.videoId} video={video} />
+      ))
+    )}
+  </div>
+</div>
 
   </div>
 );
