@@ -28,14 +28,52 @@ function Register(){
 
     }
 
-    return(<>
-    <h4>Fill in the details to Register</h4>
-    <form onSubmit={handleRegister} action="">
-        <div><label htmlFor="">UserName</label><input type="text" placeholder="UserName" onChange={(e)=>setUsername(e.target.value)} /></div>
-        <div><label htmlFor="">Email</label><input type="email" onChange={(e)=>setEmail(e.target.value)} /></div>
-        <div><label htmlFor="">Password</label><input type="password" onChange={(e)=>setPassword(e.target.value)} /></div>
-        <button type="submit">submit</button>
+    return (
+  <div className="register-container">
+
+    <form className="register-box" onSubmit={handleRegister}>
+      
+      <h2>Create Account</h2>
+
+      <div className="input-group">
+        <label>Username</label>
+        <input 
+          type="text" 
+          placeholder="Enter username"
+          onChange={(e)=>setUsername(e.target.value)} 
+          required
+        />
+      </div>
+
+      <div className="input-group">
+        <label>Email</label>
+        <input 
+          type="email" 
+          placeholder="Enter email"
+          onChange={(e)=>setEmail(e.target.value)} 
+          required
+        />
+      </div>
+
+      <div className="input-group">
+        <label>Password</label>
+        <input 
+          type="password" 
+          placeholder="Enter password"
+          onChange={(e)=>setPassword(e.target.value)} 
+          required
+        />
+      </div>
+
+      <button className="register-btn">Register</button>
+
+      <p className="login-text">
+        Already have an account? <a href="/login">Login</a>
+      </p>
+
     </form>
-    </>);
+
+  </div>
+);
 }
 export default Register;
