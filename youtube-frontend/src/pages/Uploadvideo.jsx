@@ -40,37 +40,80 @@ function Uploadvideo(){
 
             }
     }
-    return(<>
-    <form action="" onSubmit={handleuploadvideo}>
-        <div>
-            <label htmlFor="">Enter Title</label><input type="text" onChange={(e)=>setTitle(e.target.value)} />
-        </div>
-        <div>
-            <label htmlFor="">Enter Description</label><input type="text" onChange={(e)=>setDescription(e.target.value)} />
-        </div>
-        <div>
-            <label htmlFor="">Enter You Tube url</label><input type="url" onChange={(e)=>setUrl(e.target.value)} />
-        </div>
-        <div>
-            <label htmlFor="">Thumbnail</label> <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+    return (
+  <div className="upload-container">
 
-        </div>
-        <div><label htmlFor="">Category</label>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Select Category</option>
-            <option value="Education">Education</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Music">Music</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Tech">Tech</option>
-            </select>
-        </div>
-        <div><label htmlFor="">Tags</label>
-        <input type="text" placeholder="Enter tags (comma separated)" value={tags} onChange={(e) => setTags(e.target.value)} />
-        </div>
-        <input type="submit" value="upload" />
+    <form className="upload-card" onSubmit={handleuploadvideo}>
+      
+      <h2>Upload Video</h2>
+
+      <div className="form-group">
+        <label>Title</label>
+        <input 
+          type="text" 
+          placeholder="Enter video title"
+          onChange={(e)=>setTitle(e.target.value)} 
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Description</label>
+        <textarea 
+          placeholder="Enter video description"
+          onChange={(e)=>setDescription(e.target.value)}
+          rows="3"
+        />
+      </div>
+
+      <div className="form-group">
+        <label>YouTube URL</label>
+        <input 
+          type="url" 
+          placeholder="Paste video URL"
+          onChange={(e)=>setUrl(e.target.value)} 
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Thumbnail</label>
+        <input 
+          type="file" 
+          onChange={(e) => setFile(e.target.files[0])} 
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Category</label>
+        <select 
+          value={category} 
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Select Category</option>
+          <option value="Education">Education</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Music">Music</option>
+          <option value="Gaming">Gaming</option>
+          <option value="Tech">Tech</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label>Tags</label>
+        <input 
+          type="text" 
+          placeholder="e.g. coding, react, tutorial"
+          value={tags} 
+          onChange={(e) => setTags(e.target.value)} 
+        />
+      </div>
+
+      <button className="upload-btn">Upload Video</button>
+
     </form>
-    </>)
+
+  </div>
+);
 }
 
 export default Uploadvideo;
